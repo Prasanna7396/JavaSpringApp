@@ -72,7 +72,6 @@ pipeline {
                 timeout(time:5, unit:'DAYS'){
                 input message:'Approve Main Deployment?'
                 }
-            steps{
                 sh 'docker run -d -p 8090:8080 --name java-main-"$BUILD_NUMBER" "$DOCKERHUB_USER"/"$REGISTRY_NAME":"main"-"$BUILD_NUMBER"'
             }
         }
