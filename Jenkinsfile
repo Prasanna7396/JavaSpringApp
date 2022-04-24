@@ -61,6 +61,9 @@ pipeline {
             }			
         }
          stage('Docker Deployment - MAIN') {
+		
+		steps {
+
 		emailext body: "Please approve the below url build for Deployment \n ${env.BUILD_URL} \n NOTE: If not approved, build will be aborted by default",
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 mimeType: 'text/html',
