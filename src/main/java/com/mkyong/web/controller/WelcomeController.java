@@ -28,7 +28,7 @@ public class WelcomeController {
         return "Hello World - Prasanna welcomes you.";
     }
     public String getEnv() {
-	return "dev";		    
+	return "main";		    
     }
 
 }

@@ -56,17 +56,12 @@ public class TestWelcome {
 		.andExpect(status().isOk())
 		.andExpect(view().name("index"))
 		.andExpect(forwardedUrl("/WEB-INF/views/index.jsp"))
-		.andExpect(model().attribute("env", "dev"));
+		.andExpect(model().attribute("env", "main"));
 
     }
 
     @Test
     public void testRandomNumber() {
-        assertEquals(6, 2 + 4);
+        assertEquals(5, 2 + 3);
     }
-
-    @Test
-    public void testRandomString() {
-        assertEquals("CitiusTech", "CitiusTech");
-  }
 }
