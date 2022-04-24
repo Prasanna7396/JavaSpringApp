@@ -18,6 +18,16 @@ pipeline {
                 git branch: 'QA', url: 'https://github.com/Prasanna7396/JavaSpringApp.git'
 	  }
         }
+        stage('SonarQube Analysis'){
+            tools {
+                  jdk 'jdk11'
+             }
+             steps {
+               withSonarQubeEnv('sonarqube-8.9.2') {
+                sh "mvn sonar:sonar -Dsonar.projectKey=JavaWebAppQA"
+            }
+          }
+        }
         stage('Selenium Test cases') {
             steps {
                 sh 'mvn clean test -Dtest="TestSelenium" surefire-report:report-only'
@@ -28,16 +38,16 @@ pipeline {
                 }
             }
         } 	
-        stage('SonarQube Analysis'){
-            tools {
-		  jdk 'jdk11'
-	     }
-             steps {
-               withSonarQubeEnv('sonarqube-8.9.2') { 
-		sh "mvn sonar:sonar -Dsonar.projectKey=JavaWebAppQA"
-            }
-          }
-        } 		
+        //stage('SonarQube Analysis'){
+         //   tools {
+	//	  jdk 'jdk11'
+	 //    }
+          //   steps {
+           //    withSonarQubeEnv('sonarqube-8.9.2') { 
+        // 	  sh "mvn sonar:sonar -Dsonar.projectKey=JavaWebAppQA"
+         //   }
+         // }
+       // } 		
         stage('Docker Build and Image Push'){
              steps {
                   echo "Creating the docker image"
