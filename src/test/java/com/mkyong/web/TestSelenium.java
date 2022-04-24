@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 
-//import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestSelenium {
 	public String baseUrl = "http://52.90.58.207:8080/";  
@@ -20,7 +20,7 @@ public class TestSelenium {
 	
 	@Test             
 	public void testSeleniumUrl() {      
-	
+	WebDriverManager.chromedriver().version("97.0.4692.20").setup();
 	System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         //WebDriverManager.chromedriver().version("97.0.4692.20").setup();
 	ChromeOptions options = new ChromeOptions();
@@ -36,7 +36,7 @@ public class TestSelenium {
 	
 	@Test             
 	public void testSeleniumPageDetails() {      
-	      
+	WebDriverManager.chromedriver().version("97.0.4692.20").setup();      
 	System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         //WebDriverManager.chromedriver().version("97.0.4692.20").setup();	
 	ChromeOptions options = new ChromeOptions();
