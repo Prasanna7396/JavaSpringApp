@@ -11,18 +11,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestSelenium {
-	public String baseUrl = "http://52.90.58.207:8080/";  
+	public String baseUrl = "http://64.227.187.55:8080/";  
 	String driverPath = "/usr/bin/chromedriver";  
 	public WebDriver driver ;
 	
 	@Test             
 	public void testSeleniumUrl() {      
-	WebDriverManager.chromedriver().version("97.0.4692.20").setup();
 	System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-        //WebDriverManager.chromedriver().version("97.0.4692.20").setup();
 	ChromeOptions options = new ChromeOptions();
 	options.addArguments("--no-sandbox","--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors","--disable-extensions","--disable-dev-shm-usage");
     driver = new ChromeDriver(options);	   
@@ -36,9 +33,7 @@ public class TestSelenium {
 	
 	@Test             
 	public void testSeleniumPageDetails() {      
-	WebDriverManager.chromedriver().version("97.0.4692.20").setup();      
 	System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-        //WebDriverManager.chromedriver().version("97.0.4692.20").setup();	
 	ChromeOptions options = new ChromeOptions();
 	options.addArguments("--no-sandbox","--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors","--disable-extensions","--disable-dev-shm-usage");
 	driver = new ChromeDriver(options);
