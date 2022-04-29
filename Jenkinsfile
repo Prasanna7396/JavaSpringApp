@@ -9,7 +9,7 @@ pipeline {
         stage('GetCode') { 
             steps {
 		script{
-		     properties([pipelineTriggers([pollSCM('H * * * *')])])
+		     properties([pipelineTriggers([pollSCM('H */1 * * *')])])
 		} 
                 git branch: 'QA',credentialsId: 'githubToken', url: 'https://github.com/Prasanna7396/JavaSpringApp.git'
 	  }
