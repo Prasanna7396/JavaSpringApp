@@ -52,12 +52,12 @@ pipeline {
 		emailext body: '${FILE, path="target/site/surefire-report.html"}',
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 mimeType: 'text/html',
-                subject: "QA Test Report - Build ${env.currentBuild}-${env.BUILD_NUMBER} | Job: ${env.JOB_NAME}"
+                subject: "QA Test Report - Build No - ${env.BUILD_NUMBER} | Job: ${env.JOB_NAME}"
 		    
                 timeout(time:5, unit:'DAYS'){
                 input message:'Approve QA Deployment?'
                 }  
-                sh 'docker run -d -p 8091:8080 --name java-qa-"$BUILD_NUMBER" "$DOCKERHUB_USER"/"$REGISTRY_NAME":"QA"-"$BUILD_NUMBER"'
+                sh 'docker run -d -p 8092:8080 --name java-qa-"$BUILD_NUMBER" "$DOCKERHUB_USER"/"$REGISTRY_NAME":"QA"-"$BUILD_NUMBER"'
             }
         }
     }
