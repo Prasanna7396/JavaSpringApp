@@ -1,14 +1,10 @@
 pipeline {
     agent any
     environment {
-        PATH = "$PATH:/usr/share/maven/bin"
         DOCKERHUB_CREDENTIALS=credentials('dockerHub')
 	REGISTRY_NAME="simple-java-app"
         DOCKERHUB_USER="prasanna7396"
     }
-    tools {
-	jdk 'jdk8'
-    }	
     stages {
         stage('GetCode') { 
             steps {
@@ -35,10 +31,7 @@ pipeline {
             }
         }
         stage('SonarQube Analysis'){
-            tools {
-		  jdk 'jdk11'
-	     }
-             steps {
+            steps {
                withSonarQubeEnv('sonarqube-8.9.2') { 
 		sh "mvn sonar:sonar -Dsonar.projectKey=JavaWebAppDev"
             }
