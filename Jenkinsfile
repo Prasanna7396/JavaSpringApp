@@ -12,7 +12,7 @@ pipeline {
 		     properties([pipelineTriggers([pollSCM('H * * * *')])])
 		} 
                 git branch: 'main', credentialsId: 'myGithub', url: 'https://github.com/Prasanna7396/JavaSpringApp.git'
-	  }
+	   }
         } 	
         stage('Build and Artifact archival') {
             steps {
