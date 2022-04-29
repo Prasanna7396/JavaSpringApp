@@ -4,7 +4,10 @@ pipeline {
         DOCKERHUB_CREDENTIALS=credentials('dockerHub')
 	REGISTRY_NAME="simple-java-app"
         DOCKERHUB_USER="prasanna7396"
+	currentBuild.result = "SUCCESS"
+        def err = null
     }
+    try {
     stages {
         stage('GetCode') { 
             steps {
@@ -16,11 +19,11 @@ pipeline {
         }
         stage('Selenium Test cases') {
             steps {
-                sh 'mvn jetty:run'
+                sh 'mvn clean test -Dtest="TestSelenium" surefire-report:report-only'
             }
             post {
                 success {
-                   sh 'mvn clean test -Dtest="TestSelenium" surefire-report:report-only'
+                   sh 'echo "Testing is completed!"'
                 }
             }
         } 	
@@ -67,5 +70,17 @@ pipeline {
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 subject: "QA Deployment -  Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
         }	
-    }	
+    }
+  }
+    catch (caughtError) {
+    err = caughtError
+    currentBuild.result = "FAILURE"
+  }
+
+  finally {
+    /* Must re-throw exception to propagate error */
+    if (err) {
+      throw err
+    }
+  }	
 }
