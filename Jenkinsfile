@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        PATH = "$PATH:/usr/share/maven/bin"
         DOCKERHUB_CREDENTIALS=credentials('dockerHub')
 	REGISTRY_NAME="simple-java-app"
         DOCKERHUB_USER="prasanna7396"
@@ -13,20 +12,10 @@ pipeline {
         stage('GetCode') { 
             steps {
 		script{
-		     properties([pipelineTriggers([pollSCM('H/1 * * * *')])])
+		     properties([pipelineTriggers([pollSCM('H * * * *')])])
 		} 
-                git branch: 'QA', url: 'https://github.com/Prasanna7396/JavaSpringApp.git'
+                git branch: 'QA',credentialsId: 'githubToken', url: 'https://github.com/Prasanna7396/JavaSpringApp.git'
 	  }
-        }
-        stage('SonarQube Analysis'){
-            tools {
-                  jdk 'jdk11'
-             }
-             steps {
-               withSonarQubeEnv('sonarqube-8.9.2') {
-                sh "mvn sonar:sonar -Dsonar.projectKey=JavaWebAppQA"
-            }
-          }
         }
         stage('Selenium Test cases') {
             steps {
@@ -38,16 +27,16 @@ pipeline {
                 }
             }
         } 	
-        //stage('SonarQube Analysis'){
-         //   tools {
-	//	  jdk 'jdk11'
-	 //    }
-          //   steps {
-           //    withSonarQubeEnv('sonarqube-8.9.2') { 
-        // 	  sh "mvn sonar:sonar -Dsonar.projectKey=JavaWebAppQA"
-         //   }
-         // }
-       // } 		
+        stage('SonarQube Analysis'){
+           tools {
+		  jdk 'jdk11'
+	     }
+             steps {
+               withSonarQubeEnv('sonarqube-8.9.2') { 
+         	  sh "mvn sonar:sonar -Dsonar.projectKey=JavaWebAppQA"
+            }
+         }
+        } 		
         stage('Docker Build and Image Push'){
              steps {
                   echo "Creating the docker image"

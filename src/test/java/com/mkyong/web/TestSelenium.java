@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 
 public class TestSelenium {
-	public String baseUrl = "http://64.227.187.55:8080/";  
+	public String baseUrl = "http://34.198.224.73:8080/";  
 	String driverPath = "/usr/bin/chromedriver";  
 	public WebDriver driver ;
 	
