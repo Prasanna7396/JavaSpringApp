@@ -11,7 +11,7 @@ pipeline {
 		script{
 		     properties([pipelineTriggers([pollSCM('H/1 * * * *')])])
 		} 
-                git branch: 'main', credentialsId: 'githubToken', url: 'https://github.com/Prasanna7396/JavaSpringApp.git'
+                git branch: 'main', credentialsId: 'myGithub', url: 'https://github.com/Prasanna7396/JavaSpringApp.git'
 	  }
         } 	
         stage('Build and Artifact archival') {
