@@ -4,10 +4,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS=credentials('dockerHub')
 	REGISTRY_NAME="simple-java-app"
         DOCKERHUB_USER="prasanna7396"
-	currentBuild.result = "SUCCESS"
-        def err = null
     }
-    try {
     stages {
         stage('GetCode') { 
             steps {
@@ -71,16 +68,4 @@ pipeline {
                 subject: "QA Deployment -  Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
         }	
     }
-  }
-    catch (caughtError) {
-    err = caughtError
-    currentBuild.result = "FAILURE"
-  }
-
-  finally {
-    /* Must re-throw exception to propagate error */
-    if (err) {
-      throw err
-    }
-  }	
 }
