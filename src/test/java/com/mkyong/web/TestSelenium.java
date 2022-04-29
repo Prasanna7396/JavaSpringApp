@@ -41,7 +41,7 @@ public class TestSelenium {
 	 
 	String nameText = driver.findElement(By.id("myMsg")).getText();
 	System.out.println("Header is --> "+ nameText); 
-	assertEquals("Hello World - Prasanna welcome you.", nameText);  
+	assertEquals("Hello World - Prasanna welcomes you.", nameText);  
 	   
         String envText = driver.findElement(By.id("myMsg")).getText();
 	System.out.println("envText is --> "+ envText); 
