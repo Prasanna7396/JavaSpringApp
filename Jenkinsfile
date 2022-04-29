@@ -16,11 +16,11 @@ pipeline {
         }
         stage('Selenium Test cases') {
             steps {
-                sh 'mvn clean test -Dtest="TestSelenium" surefire-report:report-only'
+                sh 'mvn jetty:run'
             }
             post {
                 success {
-                    echo "Testing is completed !"
+                   sh 'mvn clean test -Dtest="TestSelenium" surefire-report:report-only'
                 }
             }
         } 	
