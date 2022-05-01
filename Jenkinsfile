@@ -10,9 +10,9 @@ pipeline {
             steps {
 		script{
 		     properties([pipelineTriggers([pollSCM('H */1 * * *')])])
-		} 
-                git branch: 'QA',credentialsId: 'githubToken', url: 'https://github.com/Prasanna7396/JavaSpringApp.git'
-	  }
+	       }
+               checkout([$class: 'GitSCM', branches: [[name: '*/QA']], extensions: [], userRemoteConfigs: [[credentialsId: 'myGithub', url: 'https://github.com/Prasanna7396/JavaSpringApp.git']]]) 
+	   }
         }
         stage('Selenium Test cases') {
             steps {
