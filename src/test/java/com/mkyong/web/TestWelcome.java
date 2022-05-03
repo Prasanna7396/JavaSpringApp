@@ -17,11 +17,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-//https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#integration-testing-annotations-junit-jupiter
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = SpringConfig.class)
-//@SpringJUnitWebConfig(SpringConfig.class)
 public class TestWelcome {
 
     private MockMvc mockMvc;
@@ -34,6 +32,7 @@ public class TestWelcome {
         mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
     }
 
+    //Test class No 1
     @Test
     public void testWelcomeMsg() throws Exception {
 
@@ -47,6 +46,7 @@ public class TestWelcome {
 
     }
 
+    //Test class No 2
     @Test
         public void testEnvMsg() throws Exception {
 	
@@ -60,6 +60,7 @@ public class TestWelcome {
 
     }
 
+    //Test class No 3
     @Test
     public void testRandomNumber() {
         assertEquals(5, 2 + 3);
