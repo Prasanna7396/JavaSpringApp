@@ -1,5 +1,5 @@
 pipeline {
-    agent DevEnv
+    agent Dev
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerHub')
 	REGISTRY_NAME="simple-java-app"
