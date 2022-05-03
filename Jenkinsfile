@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+    label "QAEnv"	
+    }
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerHub')
 	REGISTRY_NAME="simple-java-app"
